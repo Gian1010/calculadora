@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 def sumar():
-    try:
+    try: 
         num1 = float(num1_user.get())
         num2 = float(num2_user.get())
         resultado = num1 + num2 
@@ -40,9 +40,28 @@ def dividir():
     except ValueError:
         messagebox.showerror('Error','Ingrese numeros validos')
 
+def conversion_dolar():
+    try:
+        num1 = float(num1_user.get())
+        resultado = num1 / valor_dolar
+        label_resultado.config(text = f'Resultado:  {resultado} : Dolares')
+    except ValueError:
+        messagebox.showerror('Error','Ingrese un valor valido')
+
+def conversion_euro():
+    try:
+        num1 = float(num1_user.get())
+        resultado = num1 / valor_euro
+        label_resultado.config(text = f'Resultado:  {resultado} : Euros')
+    except ValueError:
+        messagebox.showerror('Error','Ingrese un valor valido')   
+
+valor_dolar = 949
+valor_euro = 1054
+
 root = tk.Tk()
 root.title('Calculadora')
-root.geometry('250x150')
+root.geometry('300x150')
 root.configure(bg='black')
 
 label_num1 = tk.Label(root, text = 'Numero 1', bg='black', fg='cyan', font=('Arial', 12, 'bold'))
@@ -69,5 +88,11 @@ boton_multiplicar.grid(row= 3, column=0)
 
 boton_dividir = tk.Button(root, text='dividir', command= dividir, bg='black', fg='cyan', font=('Arial', 12, 'bold'))
 boton_dividir.grid(row= 3, column=1)
+
+boton_dolar = tk.Button(root, text='dolar', command= conversion_dolar, bg='black', fg='cyan', font=('Arial', 12, 'bold'))
+boton_dolar.grid(row= 2, column=2)
+
+boton_euro = tk.Button(root, text='euro', command= conversion_euro, bg='black', fg='cyan', font=('Arial', 12, 'bold'))
+boton_euro.grid(row= 3, column=2)
 
 root.mainloop()
